@@ -16,6 +16,7 @@ for item in raw_data:
             if item['product']['attributes']['marketoption'] == 'OnDemand':
                 if item['product']['attributes']['capacitystatus'] == 'Used':
                     if item['product']['attributes']['preInstalledSw'] == 'NA':
+                        item['cost'] = list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']
                 #if item['product']['attributes']['instanceFamily'] == 'GPU instance':
                         products.append(item)
 
@@ -44,15 +45,20 @@ for item in sorted(
         key=lambda 
         x: (
             x['product']['attributes']['instanceFamily'], 
+            x['product']['attributes']['instanceType'].split('.')[0],
+            int(x['product']['attributes']['vcpu']),
             x['product']['attributes']['instanceType'])
         ):
+    # NOTE: this assumes there's only one item in the OnDemand
+    # terms - that's true for my use case, but check your math
+    # if you give it a try. 
     table_rows += f"""
 <tr>
 <td>{item['product']['attributes']['instanceFamily']}</td>
 <td>{item['product']['attributes']['instanceType']}</td>
 <td>{item['product']['attributes']['vcpu']}</td>
-<td>{item['product']['attributes']['tenancy']}</td>
-<td>{item['product']['attributes']['marketoption']}</td>
+<td>{item['cost']}</td>
+<td>{list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']}</td>
 </tr>
 """
 
