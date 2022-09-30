@@ -14,6 +14,21 @@ with open('raw_price_data.json') as _json:
 
 products = []
 
+gpu_names = {
+    'p4d': 'NVIDIA A100 Tensor Core',
+    'p4de': 'NVIDIA A100 Tensor Core',
+    'p3': 'NVIDIA Tesla V100',
+    'p3dn': 'NVIDIA Tesla V100',
+    'p2': 'NVIDIA K80',
+    'g5': 'NVIDIA A10G Tensor Core',
+    'g5g': 'NVIDIA T4G Tensor Core',
+    'g4dn': 'NVIDIA T4 Tensor Core',
+    'g4ad': 'AMD Radeon Pro V520',
+    'g3': 'NVIDIA Tesla M60',
+    'g3s': 'NVIDIA Tesla M60',
+    'g2': '(Not listed)'
+}
+
 # Post filter here. 
 for item in raw_data:
     if 'instanceType' in item['product']['attributes']:
@@ -22,6 +37,19 @@ for item in raw_data:
                 if item['product']['attributes']['capacitystatus'] == 'Used':
                     if item['product']['attributes']['preInstalledSw'] == 'NA':
                         item['cost'] = round(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
+                        item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
+                        if item['name_key'] in gpu_names:
+                            item['gpu_name'] = gpu_names[item['name_key']]
+                            item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}"
+                        else:
+                            item['gpu_name'] = ''
+                            item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']}"
+                        if 'gpu' in item['product']['attributes']:
+                            item['gpu'] = item['product']['attributes']['gpu']
+                        else:
+                            item['gpu'] = '0'
+
+
                         products.append(item)
 
 skeleton = Template("""<!DOCTYPE html>
@@ -47,6 +75,7 @@ for item in sorted(
         products, 
         key=lambda 
         x: (
+            x['family_with_gpu'],
             x['product']['attributes']['instanceFamily'], 
             x['cost'], 
             x['product']['attributes']['instanceType'].split('.')[0],
@@ -62,33 +91,32 @@ for item in sorted(
     item['name_2'] = matches.group(2)
     item['name_3'] = matches.group(3)
 
-    item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
+    # item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
 
-    gpu_names = {
-        'p4d': 'NVIDIA A100 Tensor Core',
-        'p4de': 'NVIDIA A100 Tensor Core',
-        'p3': 'NVIDIA Tesla V100',
-        'p3dn': 'NVIDIA Tesla V100',
-        'p2': 'NVIDIA K80',
-        'g5': 'NVIDIA A10G Tensor Core',
-        'g5g': 'NVIDIA T4G Tensor Core',
-        'g4dn': 'NVIDIA T4 Tensor Core',
-        'g4ad': 'AMD Radeon Pro V520',
-        'g3': 'NVIDIA Tesla M60',
-        'g3s': 'NVIDIA Tesla M60',
-        'g2': '(Not listed)'
+    # gpu_names = {
+    #     'p4d': 'NVIDIA A100 Tensor Core',
+    #     'p4de': 'NVIDIA A100 Tensor Core',
+    #     'p3': 'NVIDIA Tesla V100',
+    #     'p3dn': 'NVIDIA Tesla V100',
+    #     'p2': 'NVIDIA K80',
+    #     'g5': 'NVIDIA A10G Tensor Core',
+    #     'g5g': 'NVIDIA T4G Tensor Core',
+    #     'g4dn': 'NVIDIA T4 Tensor Core',
+    #     'g4ad': 'AMD Radeon Pro V520',
+    #     'g3': 'NVIDIA Tesla M60',
+    #     'g3s': 'NVIDIA Tesla M60',
+    #     'g2': '(Not listed)'
+    # }
 
-    }
+    # if item['name_key'] in gpu_names:
+    #     item['gpu_name'] = gpu_names[item['name_key']]
+    # else:
+    #     item['gpu_name'] = ''
+    # if 'gpu' in item['product']['attributes']:
+    #     item['gpu'] = item['product']['attributes']['gpu']
+    # else:
+    #     item['gpu'] = '0'
 
-    if item['name_key'] in gpu_names:
-        item['gpu_name'] = gpu_names[item['name_key']]
-    else:
-        item['gpu_name'] = ''
-
-    if 'gpu' in item['product']['attributes']:
-        item['gpu'] = item['product']['attributes']['gpu']
-    else:
-        item['gpu'] = '0'
 
     item['family'] = item['product']['attributes']['instanceFamily'].replace(' Instances', '').replace('Machine Learning', 'ML').replace('optimized', '').replace('instance', '').replace('purpose', '').replace('Accelerator', '')
 
@@ -99,7 +127,7 @@ for item in sorted(
     # if you give it a try. 
     table_rows += f"""
 <tr>
-<td class="family">{item['family']}</td>
+<td class="family">{item['family_with_gpu']}</td>
 <td class="name_1">{item['product']['attributes']['instanceType'].split('.')[0]}</td>
 <td class="name_2">{item['product']['attributes']['instanceType'].split('.')[1]}</td>
 <td class="vcpu">{item['product']['attributes']['vcpu']}</td>
