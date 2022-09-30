@@ -118,7 +118,8 @@ for item in sorted(
     #     item['gpu'] = '0'
 
 
-    item['family'] = item['product']['attributes']['instanceFamily'].replace(' Instances', '').replace('Machine Learning', 'ML').replace('optimized', '').replace('instance', '').replace('purpose', '').replace('Accelerator', '')
+    # item['family_with_gpu'] = item['family_with_gpu'].replace(' Instances', '').replace('Machine Learning', 'ML').replace('optimized', '').replace('instance', '').replace('purpose', '').replace('Accelerator', '')
+    item['family_with_gpu'] = item['family_with_gpu'].replace(' instance', '').replace(' Instances', '')
 
 
 
@@ -134,7 +135,6 @@ for item in sorted(
 <td class="gpu">{item['gpu']}</td>
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
 <td class="cost">${item['cost']}</td>
-<td class="gpu_name">{item['gpu_name']}</td>
 </tr>
 """
 
