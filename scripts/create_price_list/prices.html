@@ -1,18 +1,163 @@
 <!DOCTYPE html>
-<html><head><style>
-body { background-color: #222; color: #588; }
-td { vertical-align: top; padding-right: 8px; }
-.name_1, .name_2, .vcpu, .gpu, .memory { text-align: center;}
-</style>
-<body><table><tbody><tr>
-<th>Family</th>
-<th colspan="2">Name</th>
-<th>vCPUs</th>
-<th>GPUs</th>
-<th>Memory</th>
-<th>Cost/Hour</th>
-</tr>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS EC2 Pricing By Instance Family</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AWS EC2 Pricing By Instance Family" />
+    <meta
+      property="og:description"
+      content="A listing of AWS EC2 instance pricing sorted by family then price which make it easier for me to figure out what's going on"
+    />
+    <meta
+      property="og:image"
+      content="https://aws-ec2-pricing.alanwsmith.com/assets/og-images/main.png"
+    />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site:id" content="@TheIdOfAlan" />
+    <meta name="twitter:creator" content="@TheIdOfAlan" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicons/16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicons/32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/favicons/96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="/assets/favicons/128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/assets/favicons/196x196.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="228x228"
+      href="/assets/favicons/228x228.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="/assets/favicons/152x152.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="167x167"
+      href="/assets/favicons/167x167.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="180x180"
+      href="/assets/favicons/180x180.png"
+    />
+
+    <style>
+      body {
+        background-color: #232946;
+        color: #b8c1ec;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #fffffe;
+      }
+      a {
+        color: #eebbc3;
+        text-decoration: none;
+      }
+      header {
+        padding-top: 18px;
+        padding-bottom: 4px;
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+        border-bottom: 1px solid #888;
+      }
+      main {
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+      }
+      footer {
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 60px;
+        padding-bottom: 12px;
+        font-size: 0.9rem;
+      }
+      td {
+        padding-right: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">Home</a> ~
+      <a href="https://www.alanwsmith.com/">alanwsmith.com</a> ~
+      <a href="https://links.alanwsmith.com">links</a> ~
+      <a href="https://podcast.alanwsmith.com/">podcast</a>
+    </header>
+    <main>
+      <h1>AWS EC2 Instance Pricing</h1>
+      <p>
+        Trying to figure out EC2 pricing never fails to frustrate me.
+        <a href="https://instances.vantage.sh/">This page</a> isn't bad, but the
+        sort I want is by price in each category. So, I built it.
+      </p>
+      <p>
+        The prices are from Sept. 29, 2022. If you need to see up to the minute
+        prices, you can
+        <a
+          href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
+          >grab the script here</a
+        >. It's in the scripts dir. I don't have docs on it yet so you'll have
+        to poke at it to get it to run.
+      </p>
+      <p>
+        These prices are for On-Demand Linux instances with no other software
+        installed
+      </p>
+      <table>
+        <tbody>
+          <tr>
+            <th>Family</th>
+            <th colspan="2">Name</th>
+            <th>vCPUs</th>
+            <th>GPUs</th>
+            <th>Memory</th>
+            <th>Cost/Hour</th>
+          </tr>
+          
 <tr>
 <td class="family">Compute optimized</td>
 <td class="name_1">c6g</td>
@@ -81,16 +226,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">4</td>
 <td class="cost">$0.076</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">large</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">4</td>
-<td class="cost">$0.077</td>
 </tr>
 
 <tr>
@@ -175,32 +310,12 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c3</td>
-<td class="name_2">large</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">3.75</td>
-<td class="cost">$0.105</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5n</td>
 <td class="name_2">large</td>
 <td class="vcpu">2</td>
 <td class="gpu">0</td>
 <td class="memory">5.25</td>
 <td class="cost">$0.108</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c1</td>
-<td class="name_2">medium</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">1.7</td>
-<td class="cost">$0.13</td>
 </tr>
 
 <tr>
@@ -231,16 +346,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">8</td>
 <td class="cost">$0.153</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">8</td>
-<td class="cost">$0.154</td>
 </tr>
 
 <tr>
@@ -325,16 +430,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c3</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">7.5</td>
-<td class="cost">$0.21</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5n</td>
 <td class="name_2">xlarge</td>
 <td class="vcpu">4</td>
@@ -381,16 +476,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">16</td>
 <td class="cost">$0.307</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">16</td>
-<td class="cost">$0.308</td>
 </tr>
 
 <tr>
@@ -465,32 +550,12 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c3</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">15</td>
-<td class="cost">$0.42</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5n</td>
 <td class="name_2">2xlarge</td>
 <td class="vcpu">8</td>
 <td class="gpu">0</td>
 <td class="memory">21</td>
 <td class="cost">$0.432</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c1</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">7</td>
-<td class="cost">$0.52</td>
 </tr>
 
 <tr>
@@ -531,16 +596,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">32</td>
 <td class="cost">$0.614</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">4xlarge</td>
-<td class="vcpu">16</td>
-<td class="gpu">0</td>
-<td class="memory">32</td>
-<td class="cost">$0.616</td>
 </tr>
 
 <tr>
@@ -615,16 +670,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c3</td>
-<td class="name_2">4xlarge</td>
-<td class="vcpu">16</td>
-<td class="gpu">0</td>
-<td class="memory">30</td>
-<td class="cost">$0.84</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5n</td>
 <td class="name_2">4xlarge</td>
 <td class="vcpu">16</td>
@@ -671,16 +716,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">64</td>
 <td class="cost">$1.229</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">64</td>
-<td class="cost">$1.232</td>
 </tr>
 
 <tr>
@@ -755,16 +790,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c3</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">60</td>
-<td class="cost">$1.68</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5d</td>
 <td class="name_2">9xlarge</td>
 <td class="vcpu">36</td>
@@ -805,32 +830,12 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">12xlarge</td>
-<td class="vcpu">48</td>
-<td class="gpu">0</td>
-<td class="memory">96</td>
-<td class="cost">$1.848</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c5n</td>
 <td class="name_2">9xlarge</td>
 <td class="vcpu">36</td>
 <td class="gpu">0</td>
 <td class="memory">96</td>
 <td class="cost">$1.944</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">cc2</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">60.5</td>
-<td class="cost">$2.0</td>
 </tr>
 
 <tr>
@@ -955,16 +960,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">16xlarge</td>
-<td class="vcpu">64</td>
-<td class="gpu">0</td>
-<td class="memory">128</td>
-<td class="cost">$2.464</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
 <td class="name_1">c6i</td>
 <td class="name_2">16xlarge</td>
 <td class="vcpu">64</td>
@@ -1031,16 +1026,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">192</td>
 <td class="cost">$3.672</td>
-</tr>
-
-<tr>
-<td class="family">Compute optimized</td>
-<td class="name_1">c5a</td>
-<td class="name_2">24xlarge</td>
-<td class="vcpu">96</td>
-<td class="gpu">0</td>
-<td class="memory">192</td>
-<td class="cost">$3.696</td>
 </tr>
 
 <tr>
@@ -1231,26 +1216,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">976</td>
 <td class="cost">$13.2</td>
-</tr>
-
-<tr>
-<td class="family">GPU (Not listed)</td>
-<td class="name_1">g2</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">1</td>
-<td class="memory">15</td>
-<td class="cost">$0.65</td>
-</tr>
-
-<tr>
-<td class="family">GPU (Not listed)</td>
-<td class="name_1">g2</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">4</td>
-<td class="memory">60</td>
-<td class="cost">$2.6</td>
 </tr>
 
 <tr>
@@ -1675,16 +1640,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">t2</td>
-<td class="name_2">nano</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">0.5</td>
-<td class="cost">$0.006</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">t4g</td>
 <td class="name_2">micro</td>
 <td class="vcpu">2</td>
@@ -1715,16 +1670,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">t2</td>
-<td class="name_2">micro</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">1</td>
-<td class="cost">$0.012</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">t4g</td>
 <td class="name_2">small</td>
 <td class="vcpu">2</td>
@@ -1751,16 +1696,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">2</td>
 <td class="cost">$0.021</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">t2</td>
-<td class="name_2">small</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">2</td>
-<td class="cost">$0.023</td>
 </tr>
 
 <tr>
@@ -1815,16 +1750,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">m1</td>
-<td class="name_2">small</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">1.7</td>
-<td class="cost">$0.044</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">m6gd</td>
 <td class="name_2">medium</td>
 <td class="vcpu">1</td>
@@ -1835,32 +1760,12 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">t2</td>
-<td class="name_2">medium</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">4</td>
-<td class="cost">$0.046</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">a1</td>
 <td class="name_2">large</td>
 <td class="vcpu">2</td>
 <td class="gpu">0</td>
 <td class="memory">4</td>
 <td class="cost">$0.051</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">m3</td>
-<td class="name_2">medium</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">3.75</td>
-<td class="cost">$0.067</td>
 </tr>
 
 <tr>
@@ -1921,16 +1826,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">8</td>
 <td class="cost">$0.086</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">m1</td>
-<td class="name_2">medium</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">3.75</td>
-<td class="cost">$0.087</td>
 </tr>
 
 <tr>
@@ -2035,16 +1930,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">m3</td>
-<td class="name_2">large</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">7.5</td>
-<td class="cost">$0.133</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">t4g</td>
 <td class="name_2">xlarge</td>
 <td class="vcpu">4</td>
@@ -2121,16 +2006,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">16</td>
 <td class="cost">$0.173</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">m1</td>
-<td class="name_2">large</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">7.5</td>
-<td class="cost">$0.175</td>
 </tr>
 
 <tr>
@@ -2235,16 +2110,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">General purpose</td>
-<td class="name_1">m3</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">15</td>
-<td class="cost">$0.266</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
 <td class="name_1">t4g</td>
 <td class="name_2">2xlarge</td>
 <td class="vcpu">8</td>
@@ -2321,16 +2186,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">32</td>
 <td class="cost">$0.346</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">m1</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">15</td>
-<td class="cost">$0.35</td>
 </tr>
 
 <tr>
@@ -2441,16 +2296,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">32</td>
 <td class="cost">$0.476</td>
-</tr>
-
-<tr>
-<td class="family">General purpose</td>
-<td class="name_1">m3</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">30</td>
-<td class="cost">$0.532</td>
 </tr>
 
 <tr>
@@ -3435,16 +3280,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Memory optimized</td>
-<td class="name_1">r3</td>
-<td class="name_2">large</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">15.25</td>
-<td class="cost">$0.166</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
 <td class="name_1">r5dn</td>
 <td class="name_2">large</td>
 <td class="vcpu">2</td>
@@ -3511,16 +3346,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">32</td>
 <td class="cost">$0.23</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
-<td class="name_1">m2</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">2</td>
-<td class="gpu">0</td>
-<td class="memory">17.1</td>
-<td class="cost">$0.245</td>
 </tr>
 
 <tr>
@@ -3605,16 +3430,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Memory optimized</td>
-<td class="name_1">r3</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">30.5</td>
-<td class="cost">$0.333</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
 <td class="name_1">r5dn</td>
 <td class="name_2">xlarge</td>
 <td class="vcpu">4</td>
@@ -3681,16 +3496,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">64</td>
 <td class="cost">$0.461</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
-<td class="name_1">m2</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">34.2</td>
-<td class="cost">$0.49</td>
 </tr>
 
 <tr>
@@ -3771,16 +3576,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">64</td>
 <td class="cost">$0.605</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
-<td class="name_1">r3</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">61</td>
-<td class="cost">$0.665</td>
 </tr>
 
 <tr>
@@ -3875,16 +3670,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Memory optimized</td>
-<td class="name_1">m2</td>
-<td class="name_2">4xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">68.4</td>
-<td class="cost">$0.98</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
 <td class="name_1">r5</td>
 <td class="name_2">4xlarge</td>
 <td class="vcpu">16</td>
@@ -3971,16 +3756,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">128</td>
 <td class="cost">$1.21</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
-<td class="name_1">r3</td>
-<td class="name_2">4xlarge</td>
-<td class="vcpu">16</td>
-<td class="gpu">0</td>
-<td class="memory">122</td>
-<td class="cost">$1.33</td>
 </tr>
 
 <tr>
@@ -4175,16 +3950,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Memory optimized</td>
-<td class="name_1">r3</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">244</td>
-<td class="cost">$2.66</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
 <td class="name_1">r5dn</td>
 <td class="name_2">8xlarge</td>
 <td class="vcpu">32</td>
@@ -4321,16 +4086,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">384</td>
 <td class="cost">$3.456</td>
-</tr>
-
-<tr>
-<td class="family">Memory optimized</td>
-<td class="name_1">cr1</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">244</td>
-<td class="cost">$3.5</td>
 </tr>
 
 <tr>
@@ -5004,16 +4759,6 @@ td { vertical-align: top; padding-right: 8px; }
 </tr>
 
 <tr>
-<td class="family">Micros</td>
-<td class="name_1">t1</td>
-<td class="name_2">micro</td>
-<td class="vcpu">1</td>
-<td class="gpu">0</td>
-<td class="memory">0.613</td>
-<td class="cost">$0.02</td>
-</tr>
-
-<tr>
 <td class="family">Storage optimized</td>
 <td class="name_1">is4gen</td>
 <td class="name_2">medium</td>
@@ -5195,16 +4940,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Storage optimized</td>
-<td class="name_1">i2</td>
-<td class="name_2">xlarge</td>
-<td class="vcpu">4</td>
-<td class="gpu">0</td>
-<td class="memory">30.5</td>
-<td class="cost">$0.853</td>
-</tr>
-
-<tr>
-<td class="family">Storage optimized</td>
 <td class="name_1">i3en</td>
 <td class="name_2">2xlarge</td>
 <td class="vcpu">8</td>
@@ -5301,16 +5036,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">64</td>
 <td class="cost">$1.455</td>
-</tr>
-
-<tr>
-<td class="family">Storage optimized</td>
-<td class="name_1">i2</td>
-<td class="name_2">2xlarge</td>
-<td class="vcpu">8</td>
-<td class="gpu">0</td>
-<td class="memory">61</td>
-<td class="cost">$1.705</td>
 </tr>
 
 <tr>
@@ -5415,16 +5140,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Storage optimized</td>
-<td class="name_1">i2</td>
-<td class="name_2">4xlarge</td>
-<td class="vcpu">16</td>
-<td class="gpu">0</td>
-<td class="memory">122</td>
-<td class="cost">$3.41</td>
-</tr>
-
-<tr>
-<td class="family">Storage optimized</td>
 <td class="name_1">h1</td>
 <td class="name_2">16xlarge</td>
 <td class="vcpu">64</td>
@@ -5451,16 +5166,6 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="gpu">0</td>
 <td class="memory">128</td>
 <td class="cost">$4.206</td>
-</tr>
-
-<tr>
-<td class="family">Storage optimized</td>
-<td class="name_1">hs1</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">16</td>
-<td class="gpu">0</td>
-<td class="memory">117</td>
-<td class="cost">$4.6</td>
 </tr>
 
 <tr>
@@ -5545,16 +5250,6 @@ td { vertical-align: top; padding-right: 8px; }
 
 <tr>
 <td class="family">Storage optimized</td>
-<td class="name_1">i2</td>
-<td class="name_2">8xlarge</td>
-<td class="vcpu">32</td>
-<td class="gpu">0</td>
-<td class="memory">244</td>
-<td class="cost">$6.82</td>
-</tr>
-
-<tr>
-<td class="family">Storage optimized</td>
 <td class="name_1">i3en</td>
 <td class="name_2">24xlarge</td>
 <td class="vcpu">96</td>
@@ -5593,4 +5288,16 @@ td { vertical-align: top; padding-right: 8px; }
 <td class="cost">$10.982</td>
 </tr>
 
-</tbody></table></body></html>
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      made by <a href="https://twitter.com/TheIdOfAlan">alan w. smith</a>
+      <br />
+      who has a <a href="https://www.alanwsmith.com">website</a> and a
+      <a href="https://podcast.alanwsmith.com/">podcast</a> <br />
+      among other <a href="https://links.alanwsmith.com">things</a>
+    </footer>
+  </body>
+</html>

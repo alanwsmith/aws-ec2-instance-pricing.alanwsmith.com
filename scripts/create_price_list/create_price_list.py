@@ -5,11 +5,7 @@ import re
 
 from string import Template
 
-# Yeah, you're right. This code ain't pretty,
-# but it's one off code and it got the job
-# done.
-
-with open('raw_price_data.json') as _json:
+with open('../get_raw_price_data/data.json') as _json:
     raw_data = json.load(_json)
 
 products = []
@@ -48,27 +44,25 @@ for item in raw_data:
                             item['gpu'] = item['product']['attributes']['gpu']
                         else:
                             item['gpu'] = '0'
-
-
                         products.append(item)
 
-skeleton = Template("""<!DOCTYPE html>
-<html><head><style>
-body { background-color: #222; color: #588; }
-td { vertical-align: top; padding-right: 8px; }
-.name_1, .name_2, .vcpu, .gpu, .memory { text-align: center;}
-</style>
-<body><table><tbody><tr>
-<th>Family</th>
-<th colspan="2">Name</th>
-<th>vCPUs</th>
-<th>GPUs</th>
-<th>Memory</th>
-<th>Cost/Hour</th>
-</tr>
-$TABLE_ROWS
-</tbody></table></body></html>
-""")
+# skeleton = Template("""<!DOCTYPE html>
+# <html><head><style>
+# body { background-color: #222; color: #588; }
+# td { vertical-align: top; padding-right: 8px; }
+# .name_1, .name_2, .vcpu, .gpu, .memory { text-align: center;}
+# </style>
+# <body><table><tbody><tr>
+# <th>Family</th>
+# <th colspan="2">Name</th>
+# <th>vCPUs</th>
+# <th>GPUs</th>
+# <th>Memory</th>
+# <th>Cost/Hour</th>
+# </tr>
+# $TABLE_ROWS
+# </tbody></table></body></html>
+# """)
 
 table_rows = ''
 for item in sorted(
@@ -121,8 +115,6 @@ for item in sorted(
     # item['family_with_gpu'] = item['family_with_gpu'].replace(' Instances', '').replace('Machine Learning', 'ML').replace('optimized', '').replace('instance', '').replace('purpose', '').replace('Accelerator', '')
     item['family_with_gpu'] = item['family_with_gpu'].replace(' instance', '').replace(' Instances', '')
 
-
-
     # NOTE: this assumes there's only one item in the OnDemand
     # terms - that's true for my use case, but check your math
     # if you give it a try. 
@@ -134,10 +126,14 @@ for item in sorted(
 <td class="vcpu">{item['product']['attributes']['vcpu']}</td>
 <td class="gpu">{item['gpu']}</td>
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
-<td class="cost">${item['cost']}</td>
+<td class="cost">{item['cost']}</td>
 </tr>
 """
 
-with open('prices.html', 'w') as _out:
-    _out.write(skeleton.substitute(TABLE_ROWS=table_rows))
+
+with open('template.html') as _template:
+    skeleton = Template(_template.read())
+    with open('../../site/index.html', 'w') as _out:
+        _out.write(skeleton.substitute(TABLE_ROWS=table_rows))
+
 
