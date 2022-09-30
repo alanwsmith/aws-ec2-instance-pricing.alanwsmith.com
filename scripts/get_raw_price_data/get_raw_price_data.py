@@ -9,25 +9,48 @@ paginator = client.get_paginator('get_products')
 
 prices = []
 
+filter_list = [
+    ('capacitystatus', 'Used'),
+    ('currentGeneration', 'Yes'),
+    ('licenseModel', 'No License required'),
+    ('marketoption', 'OnDemand'), 
+    ('operatingSystem', 'Linux'),
+    ('preInstalledSw', 'NA'),
+    ('processorArchitecture', '64-bit'),
+    ('regionCode', 'us-east-1'),
+    ('tenancy', 'Shared'),
+]
+
 response_iterator = paginator.paginate(
-    Filters=[
-        {
-            'Field':'regionCode',
-            'Type':'TERM_MATCH',
-            'Value':'us-east-1'
-        },
-        {
-            'Field':'operatingSystem',
-            'Type':'TERM_MATCH',
-            'Value':'Linux'
-        }
-    ],
+    ServiceCode='AmazonEC2',
     FormatVersion='aws_v1',
     PaginationConfig={
-        # 'MaxItems': 200,
-        'PageSize': 40
+        # 'MaxItems': 20,
     },
-    ServiceCode='AmazonEC2'
+    Filters= list(
+        map(
+        lambda x: {
+          'Type': 'TERM_MATCH',
+          'Field': x[0],
+          'Value': x[1]
+        },
+        filter_list
+      )
+    )
+
+    # Filters=[
+    #     {
+    #         'Field':'regionCode',
+    #         'Type':'TERM_MATCH',
+    #         'Value':'us-east-1'
+    #     },
+    #     {
+    #         'Field':'operatingSystem',
+    #         'Type':'TERM_MATCH',
+    #         'Value':'Linux'
+    #     },
+    # ]
+
 )
 
 for page in response_iterator:
