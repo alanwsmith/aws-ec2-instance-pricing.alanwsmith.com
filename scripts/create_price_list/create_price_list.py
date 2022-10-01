@@ -55,7 +55,8 @@ for item in sorted(
         int(x['product']['attributes']['vcpu']),
         x['product']['attributes']['instanceType'])
     ):
-    gpu_table_rows += f"""
+    if item['gpu'] != '0': 
+        gpu_table_rows += f"""
 <tr>
 <td class="family">{item['family_with_gpu'].replace('GPU ', '')}</td>
 <td class="name_1">{item['product']['attributes']['instanceType'].split('.')[0]}</td>
@@ -66,7 +67,6 @@ for item in sorted(
 <td class="cost">{item['cost_display']}</td>
 </tr>
 """
-
 
 
 table_rows = ''
@@ -96,6 +96,6 @@ for item in sorted(
 with open('template.html') as _template:
     skeleton = Template(_template.read())
     with open('../../site/index.html', 'w') as _out:
-        _out.write(skeleton.substitute(TABLE_ROWS=table_rows))
+        _out.write(skeleton.substitute(TABLE_ROWS=table_rows, GPU_TABLE_ROWS=gpu_table_rows))
 
 

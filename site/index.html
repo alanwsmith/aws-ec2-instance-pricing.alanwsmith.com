@@ -132,6 +132,10 @@
         font-family: monospace;
         text-align: right;
       }
+      th {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     </style>
   </head>
   <body>
@@ -145,22 +149,434 @@
         <h1>AWS EC2 Instance Pricing</h1>
         <p>
           Trying to figure out EC2 pricing never fails to frustrate me.
-          <a href="https://instances.vantage.sh/">This page</a> isn't bad, but
-          the sort I want is by price in each category. So, I built it.
+          <a href="https://instances.vantage.sh/">This page</a> isn't bad, but I
+          wanted things sorted by price within each instance category. So, I
+          banged my head against the
+          <a href="https://aws-price-list-api-values.alanwsmith.com/"
+            >price list API</a
+          >
+          for a while and built it.
         </p>
         <p>
-          The prices are from Sept. 29, 2022. If you need to see up to the
-          minute prices, you can
+          The first table is GPU instances sorted by card type. The second table
+          includes all instance types with GPU instances sorted directly by
+          price (regardless of card type). In each case, the price is for On
+          Demand Linux instances with no addiitonal software installed.
+        </p>
+        <p>
+          Prices are from Sept. 29, 2022. The
           <a
             href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
-            >grab the source code here</a
-          >.
-        </p>
-        <p>
-          These prices are for On-Demand Linux instances with no other software
-          installed:
+            >source code is here</a
+          >
+          if you'd like to get current prices.
         </p>
       </div>
+      <h2>GPU Instances By Card Type</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>GPU Card</th>
+            <th colspan="2">Name</th>
+            <th>vCPUs</th>
+            <th>GPUs</th>
+            <th>Memory</th>
+            <th>&dollar;/Hour</th>
+          </tr>
+          
+<tr>
+<td class="family"> AMD Radeon Pro V520</td>
+<td class="name_1">g4ad</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">16</td>
+<td class="cost">0.379</td>
+</tr>
+
+<tr>
+<td class="family"> AMD Radeon Pro V520</td>
+<td class="name_1">g4ad</td>
+<td class="name_2">2xlarge</td>
+<td class="vcpu">8</td>
+<td class="gpu">1</td>
+<td class="memory">32</td>
+<td class="cost">0.541</td>
+</tr>
+
+<tr>
+<td class="family"> AMD Radeon Pro V520</td>
+<td class="name_1">g4ad</td>
+<td class="name_2">4xlarge</td>
+<td class="vcpu">16</td>
+<td class="gpu">1</td>
+<td class="memory">64</td>
+<td class="cost">0.867</td>
+</tr>
+
+<tr>
+<td class="family"> AMD Radeon Pro V520</td>
+<td class="name_1">g4ad</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">2</td>
+<td class="memory">128</td>
+<td class="cost">1.734</td>
+</tr>
+
+<tr>
+<td class="family"> AMD Radeon Pro V520</td>
+<td class="name_1">g4ad</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">4</td>
+<td class="memory">256</td>
+<td class="cost">3.468</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A100 Tensor Core</td>
+<td class="name_1">p4d</td>
+<td class="name_2">24xlarge</td>
+<td class="vcpu">96</td>
+<td class="gpu">8</td>
+<td class="memory">1152</td>
+<td class="cost">32.773</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A100 Tensor Core</td>
+<td class="name_1">p4de</td>
+<td class="name_2">24xlarge</td>
+<td class="vcpu">96</td>
+<td class="gpu">8</td>
+<td class="memory">1152</td>
+<td class="cost">40.966</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">16</td>
+<td class="cost">1.006</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">2xlarge</td>
+<td class="vcpu">8</td>
+<td class="gpu">1</td>
+<td class="memory">32</td>
+<td class="cost">1.212</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">4xlarge</td>
+<td class="vcpu">16</td>
+<td class="gpu">1</td>
+<td class="memory">64</td>
+<td class="cost">1.624</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">1</td>
+<td class="memory">128</td>
+<td class="cost">2.448</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">1</td>
+<td class="memory">256</td>
+<td class="cost">4.096</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">12xlarge</td>
+<td class="vcpu">48</td>
+<td class="gpu">4</td>
+<td class="memory">192</td>
+<td class="cost">5.672</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">24xlarge</td>
+<td class="vcpu">96</td>
+<td class="gpu">4</td>
+<td class="memory">384</td>
+<td class="cost">8.144</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA A10G Tensor Core</td>
+<td class="name_1">g5</td>
+<td class="name_2">48xlarge</td>
+<td class="vcpu">192</td>
+<td class="gpu">8</td>
+<td class="memory">768</td>
+<td class="cost">16.288</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA K80</td>
+<td class="name_1">p2</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">61</td>
+<td class="cost">0.900</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA K80</td>
+<td class="name_1">p2</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">8</td>
+<td class="memory">488</td>
+<td class="cost">7.200</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA K80</td>
+<td class="name_1">p2</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">16</td>
+<td class="memory">732</td>
+<td class="cost">14.400</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">16</td>
+<td class="cost">0.526</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">2xlarge</td>
+<td class="vcpu">8</td>
+<td class="gpu">1</td>
+<td class="memory">32</td>
+<td class="cost">0.752</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">4xlarge</td>
+<td class="vcpu">16</td>
+<td class="gpu">1</td>
+<td class="memory">64</td>
+<td class="cost">1.204</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">1</td>
+<td class="memory">128</td>
+<td class="cost">2.176</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">12xlarge</td>
+<td class="vcpu">48</td>
+<td class="gpu">4</td>
+<td class="memory">192</td>
+<td class="cost">3.912</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">1</td>
+<td class="memory">256</td>
+<td class="cost">4.352</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4 Tensor Core</td>
+<td class="name_1">g4dn</td>
+<td class="name_2">metal</td>
+<td class="vcpu">96</td>
+<td class="gpu">8</td>
+<td class="memory">384</td>
+<td class="cost">7.824</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">8</td>
+<td class="cost">0.420</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">2xlarge</td>
+<td class="vcpu">8</td>
+<td class="gpu">1</td>
+<td class="memory">16</td>
+<td class="cost">0.556</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">4xlarge</td>
+<td class="vcpu">16</td>
+<td class="gpu">1</td>
+<td class="memory">32</td>
+<td class="cost">0.828</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">1</td>
+<td class="memory">64</td>
+<td class="cost">1.372</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">2</td>
+<td class="memory">128</td>
+<td class="cost">2.744</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA T4G Tensor Core</td>
+<td class="name_1">g5g</td>
+<td class="name_2">metal</td>
+<td class="vcpu">64</td>
+<td class="gpu">2</td>
+<td class="memory">128</td>
+<td class="cost">2.744</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla M60</td>
+<td class="name_1">g3s</td>
+<td class="name_2">xlarge</td>
+<td class="vcpu">4</td>
+<td class="gpu">1</td>
+<td class="memory">30.5</td>
+<td class="cost">0.750</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla M60</td>
+<td class="name_1">g3</td>
+<td class="name_2">4xlarge</td>
+<td class="vcpu">16</td>
+<td class="gpu">1</td>
+<td class="memory">122</td>
+<td class="cost">1.140</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla M60</td>
+<td class="name_1">g3</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">2</td>
+<td class="memory">244</td>
+<td class="cost">2.280</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla M60</td>
+<td class="name_1">g3</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">4</td>
+<td class="memory">488</td>
+<td class="cost">4.560</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla V100</td>
+<td class="name_1">p3</td>
+<td class="name_2">2xlarge</td>
+<td class="vcpu">8</td>
+<td class="gpu">1</td>
+<td class="memory">61</td>
+<td class="cost">3.060</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla V100</td>
+<td class="name_1">p3</td>
+<td class="name_2">8xlarge</td>
+<td class="vcpu">32</td>
+<td class="gpu">4</td>
+<td class="memory">244</td>
+<td class="cost">12.240</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla V100</td>
+<td class="name_1">p3</td>
+<td class="name_2">16xlarge</td>
+<td class="vcpu">64</td>
+<td class="gpu">8</td>
+<td class="memory">488</td>
+<td class="cost">24.480</td>
+</tr>
+
+<tr>
+<td class="family"> NVIDIA Tesla V100</td>
+<td class="name_1">p3dn</td>
+<td class="name_2">24xlarge</td>
+<td class="vcpu">96</td>
+<td class="gpu">8</td>
+<td class="memory">768</td>
+<td class="cost">31.212</td>
+</tr>
+
+        </tbody>
+      </table>
+      <h2>All Instance Types</h2>
       <table>
         <tbody>
           <tr>
@@ -169,7 +585,8 @@
             <th>vCPUs</th>
             <th>GPUs</th>
             <th>Memory</th>
-            <th>Cost/Hour</th>
+            <th>&dollar;/Hour</th>
+            <th></th>
           </tr>
           
 <tr>
@@ -5817,6 +6234,38 @@
 
         </tbody>
       </table>
+      <div class="prose">
+        <h2>Notes</h2>
+        <ul>
+          <li>Prices are in USD</li>
+          <li>
+            I put this togehter because I'm working on a comparison of EC2
+            instances for rendering blender files. I couldn't get my head around
+            the pricing from the AWS UI and since that's always bugged me we
+            ended up here
+          </li>
+          <li>
+            I didn't put in any of the storage or network notes. There's a bunch
+            of different types that would have added clutter to this basic price
+            list that I was after
+          </li>
+          <li>
+            If you'd like to dig into the pricing API to make your own views
+            I've got a good starting point
+            <a href="https://aws-price-list-api-values.alanwsmith.com/"
+              >setup here</a
+            >
+          </li>
+          <li>
+            As mentioned above, this data doesn't update live. If you want the
+            current values you can
+            <a
+              href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
+              >grab the source code here</a
+            >
+          </li>
+        </ul>
+      </div>
     </main>
 
     <footer>
