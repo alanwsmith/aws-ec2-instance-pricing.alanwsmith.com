@@ -102,9 +102,10 @@
         border-bottom: 1px solid #888;
       }
       main {
-        width: 100%;
-        max-width: 78ch;
         margin: 0 auto;
+      }
+      .prose {
+        max-width: 78ch;
       }
       footer {
         width: 100%;
@@ -140,24 +141,26 @@
       <a href="https://podcast.alanwsmith.com/">podcast</a>
     </header>
     <main>
-      <h1>AWS EC2 Instance Pricing</h1>
-      <p>
-        Trying to figure out EC2 pricing never fails to frustrate me.
-        <a href="https://instances.vantage.sh/">This page</a> isn't bad, but the
-        sort I want is by price in each category. So, I built it.
-      </p>
-      <p>
-        The prices are from Sept. 29, 2022. If you need to see up to the minute
-        prices, you can
-        <a
-          href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
-          >grab the source code here</a
-        >.
-      </p>
-      <p>
-        These prices are for On-Demand Linux instances with no other software
-        installed:
-      </p>
+      <div class="prose">
+        <h1>AWS EC2 Instance Pricing</h1>
+        <p>
+          Trying to figure out EC2 pricing never fails to frustrate me.
+          <a href="https://instances.vantage.sh/">This page</a> isn't bad, but
+          the sort I want is by price in each category. So, I built it.
+        </p>
+        <p>
+          The prices are from Sept. 29, 2022. If you need to see up to the
+          minute prices, you can
+          <a
+            href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
+            >grab the source code here</a
+          >.
+        </p>
+        <p>
+          These prices are for On-Demand Linux instances with no other software
+          installed:
+        </p>
+      </div>
       <table>
         <tbody>
           <tr>

@@ -30,6 +30,7 @@ for item in raw_data:
     item['cost'] = round(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
     item['cost_display'] = "{:.3f}".format(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
     item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
+    item['family'] = item['product']['attributes']['instanceFamily'].replace('Machine Learning', 'ML').replace('Instances', '')
     if item['name_key'] in gpu_names:
         item['gpu_name'] = gpu_names[item['name_key']]
         item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}".replace('instance', '')
@@ -42,8 +43,7 @@ for item in raw_data:
         item['gpu'] = '0'
     products.append(item)
 
-
-table_rows = ''
+gpu_table_rows = ''
 for item in sorted(
     products, 
     key=lambda 
@@ -55,7 +55,7 @@ for item in sorted(
         int(x['product']['attributes']['vcpu']),
         x['product']['attributes']['instanceType'])
     ):
-    table_rows += f"""
+    gpu_table_rows += f"""
 <tr>
 <td class="family">{item['family_with_gpu'].replace('GPU ', '')}</td>
 <td class="name_1">{item['product']['attributes']['instanceType'].split('.')[0]}</td>
@@ -64,6 +64,32 @@ for item in sorted(
 <td class="gpu">{item['gpu']}</td>
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
 <td class="cost">{item['cost_display']}</td>
+</tr>
+"""
+
+
+
+table_rows = ''
+for item in sorted(
+    products, 
+    key=lambda 
+    x: (
+        x['product']['attributes']['instanceFamily'], 
+        x['cost'], 
+        x['product']['attributes']['instanceType'].split('.')[0],
+        int(x['product']['attributes']['vcpu']),
+        x['product']['attributes']['instanceType'])
+    ):
+    table_rows += f"""
+<tr>
+<td class="family">{item['family']}</td>
+<td class="name_1">{item['product']['attributes']['instanceType'].split('.')[0]}</td>
+<td class="name_2">{item['product']['attributes']['instanceType'].split('.')[1]}</td>
+<td class="vcpu">{item['product']['attributes']['vcpu']}</td>
+<td class="gpu">{item['gpu']}</td>
+<td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
+<td class="cost">{item['cost_display']}</td>
+<td class="gpu_name">{item['gpu_name']}</td>
 </tr>
 """
 
