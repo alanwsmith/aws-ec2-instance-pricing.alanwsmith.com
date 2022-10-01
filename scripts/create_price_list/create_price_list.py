@@ -32,7 +32,7 @@ for item in raw_data:
     item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
     if item['name_key'] in gpu_names:
         item['gpu_name'] = gpu_names[item['name_key']]
-        item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}"
+        item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}".replace('instance', '')
     else:
         item['gpu_name'] = ''
         item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']}"
@@ -42,35 +42,22 @@ for item in raw_data:
         item['gpu'] = '0'
     products.append(item)
 
+
 table_rows = ''
 for item in sorted(
-        products, 
-        key=lambda 
-        x: (
-            x['family_with_gpu'],
-            x['product']['attributes']['instanceFamily'], 
-            x['cost'], 
-            x['product']['attributes']['instanceType'].split('.')[0],
-            int(x['product']['attributes']['vcpu']),
-            x['product']['attributes']['instanceType'])
-        ):
-
-    matches = re.search(
-        r"(\w+)(\d+)(.*)", 
-        item['product']['attributes']['instanceType'].split('.')[0]
-    )
-    item['name_1'] = matches.group(1)
-    item['name_2'] = matches.group(2)
-    item['name_3'] = matches.group(3)
-
-    item['family_with_gpu'] = item['family_with_gpu'].replace(' instance', '').replace(' Instances', '')
-
-    # NOTE: this assumes there's only one item in the OnDemand
-    # terms - that's true for my use case, but check your math
-    # if you give it a try. 
+    products, 
+    key=lambda 
+    x: (
+        x['family_with_gpu'],
+        x['product']['attributes']['instanceFamily'], 
+        x['cost'], 
+        x['product']['attributes']['instanceType'].split('.')[0],
+        int(x['product']['attributes']['vcpu']),
+        x['product']['attributes']['instanceType'])
+    ):
     table_rows += f"""
 <tr>
-<td class="family">{item['family_with_gpu']}</td>
+<td class="family">{item['family_with_gpu'].replace('GPU ', '')}</td>
 <td class="name_1">{item['product']['attributes']['instanceType'].split('.')[0]}</td>
 <td class="name_2">{item['product']['attributes']['instanceType'].split('.')[1]}</td>
 <td class="vcpu">{item['product']['attributes']['vcpu']}</td>
@@ -79,7 +66,6 @@ for item in sorted(
 <td class="cost">{item['cost_display']}</td>
 </tr>
 """
-
 
 with open('template.html') as _template:
     skeleton = Template(_template.read())
