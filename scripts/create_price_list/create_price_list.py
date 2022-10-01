@@ -27,24 +27,20 @@ gpu_names = {
 
 # Post filter here. 
 for item in raw_data:
-    if 'instanceType' in item['product']['attributes']:
-        if item['product']['attributes']['tenancy'] == 'Shared':
-            if item['product']['attributes']['marketoption'] == 'OnDemand':
-                if item['product']['attributes']['capacitystatus'] == 'Used':
-                    if item['product']['attributes']['preInstalledSw'] == 'NA':
-                        item['cost'] = round(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
-                        item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
-                        if item['name_key'] in gpu_names:
-                            item['gpu_name'] = gpu_names[item['name_key']]
-                            item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}"
-                        else:
-                            item['gpu_name'] = ''
-                            item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']}"
-                        if 'gpu' in item['product']['attributes']:
-                            item['gpu'] = item['product']['attributes']['gpu']
-                        else:
-                            item['gpu'] = '0'
-                        products.append(item)
+    item['cost'] = round(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
+    item['cost_display'] = "{:.3f}".format(float(list(list(item['terms']['OnDemand'].items())[0][1]['priceDimensions'].items())[0][1]['pricePerUnit']['USD']), 3)
+    item['name_key'] = item['product']['attributes']['instanceType'].split('.')[0]
+    if item['name_key'] in gpu_names:
+        item['gpu_name'] = gpu_names[item['name_key']]
+        item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']} {gpu_names[item['name_key']]}"
+    else:
+        item['gpu_name'] = ''
+        item['family_with_gpu'] = f"{item['product']['attributes']['instanceFamily']}"
+    if 'gpu' in item['product']['attributes']:
+        item['gpu'] = item['product']['attributes']['gpu']
+    else:
+        item['gpu'] = '0'
+    products.append(item)
 
 table_rows = ''
 for item in sorted(
@@ -80,7 +76,7 @@ for item in sorted(
 <td class="vcpu">{item['product']['attributes']['vcpu']}</td>
 <td class="gpu">{item['gpu']}</td>
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
-<td class="cost">{item['cost']}</td>
+<td class="cost">{item['cost_display']}</td>
 </tr>
 """
 
