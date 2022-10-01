@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS EC2 Pricing By Instance Family</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AWS EC2 Pricing By Instance Family" />
+    <meta
+      property="og:description"
+      content="A listing of AWS EC2 instance pricing sorted by family then price which make it easier for me to figure out what's going on"
+    />
+    <meta
+      property="og:image"
+      content="https://aws-ec2-pricing.alanwsmith.com/assets/og-images/main.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site:id" content="@TheIdOfAlan" />
+    <meta name="twitter:creator" content="@TheIdOfAlan" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicons/16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicons/32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/favicons/96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="/assets/favicons/128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/assets/favicons/196x196.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="228x228"
+      href="/assets/favicons/228x228.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="/assets/favicons/152x152.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="167x167"
+      href="/assets/favicons/167x167.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="180x180"
+      href="/assets/favicons/180x180.png"
+    />
+
+    <style>
+      body {
+        background-color: #232946;
+        color: #b8c1ec;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #fffffe;
+      }
+      a {
+        color: #eebbc3;
+        text-decoration: none;
+      }
+      header {
+        padding-top: 18px;
+        padding-bottom: 4px;
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+        border-bottom: 1px solid #888;
+      }
+      main {
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+      }
+      footer {
+        width: 100%;
+        max-width: 72ch;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 60px;
+        padding-bottom: 12px;
+        font-size: 0.9rem;
+      }
+      td {
+        padding-right: 12px;
+        vertical-align: top;
+        padding-right: 8px;
+        font-size: 0.78rem;
+      }
+      .name_1,
+      .name_2,
+      .vcpu,
+      .gpu,
+      .memory {
+        text-align: center;
+      }
+      .cost {
+        font-family: monospace;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="https://www.alanwsmith.com/">alanwsmith.com</a> ~
+      <a href="https://links.alanwsmith.com">links</a> ~
+      <a href="https://podcast.alanwsmith.com/">podcast</a>
+    </header>
+    <main>
+      <h1>AWS EC2 Instance Pricing</h1>
+      <p>
+        Trying to figure out EC2 pricing never fails to frustrate me.
+        <a href="https://instances.vantage.sh/">This page</a> isn't bad, but the
+        sort I want is by price in each category. So, I built it.
+      </p>
+      <p>
+        The prices are from Sept. 29, 2022. If you need to see up to the minute
+        prices, you can
+        <a
+          href="https://github.com/alanwsmith/aws-ec2-instance-pricing.alanwsmith.com"
+          >grab the source code here</a
+        >.
+      </p>
+      <p>
+        These prices are for On-Demand Linux instances with no other software
+        installed:
+      </p>
+      <table>
+        <tbody>
+          <tr>
+            <th>Family</th>
+            <th colspan="2">Name</th>
+            <th>vCPUs</th>
+            <th>GPUs</th>
+            <th>Memory</th>
+            <th>Cost/Hour</th>
+          </tr>
+          $TABLE_ROWS
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      made by <a href="https://twitter.com/TheIdOfAlan">alan w. smith</a>
+      <br />
+      who has a <a href="https://www.alanwsmith.com">website</a> and a
+      <a href="https://podcast.alanwsmith.com/">podcast</a> <br />
+      among other <a href="https://links.alanwsmith.com">things</a>
+    </footer>
+  </body>
+</html>
