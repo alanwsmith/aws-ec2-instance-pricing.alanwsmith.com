@@ -41,6 +41,8 @@ for item in raw_data:
         item['gpu'] = item['product']['attributes']['gpu']
     else:
         item['gpu'] = '0'
+
+    item['cpu'] = item['product']['attributes']['physicalProcessor']
     products.append(item)
 
 gpu_table_rows = ''
@@ -65,6 +67,7 @@ for item in sorted(
 <td class="gpu">{item['gpu']}</td>
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
 <td class="cost">{item['cost_display']}</td>
+<td class="cost">{item['cpu']}</td>
 </tr>
 """
 
@@ -90,6 +93,7 @@ for item in sorted(
 <td class="memory">{item['product']['attributes']['memory'].replace(' GiB', '')}</td>
 <td class="cost">{item['cost_display']}</td>
 <td class="gpu_name">{item['gpu_name']}</td>
+<td class="gpu_name">{item['cpu']}</td>
 </tr>
 """
 
